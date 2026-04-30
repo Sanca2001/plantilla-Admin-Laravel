@@ -16,10 +16,28 @@
 
         <!-- OPCIONES DE NAVEGACION DEL MENU -->
         <flux:sidebar.nav>
-            
+            <!-- INICIO -->
             <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate> PANEL </flux:sidebar.item>
+
+            <!-- CONFIGURACIÓNES -->
             <flux:sidebar.item icon="cog-6-tooth" :href="route('admin.ajustes.index')" :current="request()->routeIs('admin.ajustes.index')" wire:navigate> CONFIGURACIÓNES </flux:sidebar.item>
+
+            <!-- DIVISOR -->
+            <div class="mt-6 mb-2 px-3 text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.1em] transition-opacity duration-300 flex items-center gap-2 group-data-[collapsed]:hidden">
+                <span> ADMINSTRACIÓN </span>
+                <div class="h-[1px] flex-1 bg-zinc-200 dark:bg-zinc-700/50"></div>
+            </div>
+
+            <!-- ROLES -->
+            <flux:sidebar.item icon="user-group" :href="route('admin.roles.index')" :current="request()->routeIs('admin.roles.index')" wire:navigate> ROLES </flux:sidebar.item>
+
+
+
+
         </flux:sidebar.nav>
+
+
+
 
         <flux:sidebar.spacer />
 

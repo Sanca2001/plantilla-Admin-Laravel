@@ -10,16 +10,36 @@ use Illuminate\Http\Request;
 class AjustesController extends Controller
 {
 
+
     public function index()
     {
         $ajustes = Ajustes::first();
 
+        try {
+            // Intentamos obtener las divisas de la API
+            $jsonData = @file_get_contents('https://api.hilariweb.com/divisas');
+            $divisas = json_decode($jsonData, true);
+        } catch (\Exception $e) {
+            $divisas = null;
+        }
 
+        // Si la API falla o devuelve null, usamos una lista predeterminada
+        if (!$divisas) {
+            $divisas = [
+                ['symbol' => 'S/', 'name' => 'Soles (Perú)'],
+                ['symbol' => '$', 'name' => 'Pesos (Chile)'],
+                ['symbol' => 'USD', 'name' => 'Dólares (EE.UU.)'],
+                ['symbol' => '€', 'name' => 'Euros (Europa)'],
+            ];
+        }
 
-        $jsonData = file_get_contents('https://api.hilariweb.com/divisas');
-        $divisas = json_decode($jsonData, true);
         return view('admin.ajustes.index', compact('divisas', 'ajustes'));
     }
+
+
+
+
+
 
 
     public function store(Request $request)
