@@ -18,15 +18,10 @@ class AjustesController extends Controller
         //validar los datos
         $request->validate([
             'nombre_empresa' => 'required|string|max:255',
-            'descripcion_empresa' => 'required|string|max:255',
             'direccion_empresa' => 'required|string|max:255',
             'telefono_empresa' => 'required|string|max:255',
             'correo_empresa' => 'required|string|max:255',
             'divisa_empresa' => 'required|string|max:255',
-            'logo_empresa' => 'required|string|max:255',
-            'web_empresa' => 'required|string|max:255',
-            'interes' => 'required|decimal|max:100',
-            'mora' => 'required|decimal|max:100',
         ]);
 
 
