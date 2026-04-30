@@ -10,6 +10,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/settings.php';
 
+//rutas para ajustes
+
+Route::get('/admin/ajustes',[App\Http\Controllers\AjustesController::class, 'index'])->name('admin.ajustes.index');
+
+
+//ruta para guardar los ajustes
+Route::post('/admin/ajustes',[App\Http\Controllers\AjustesController::class, 'store'])->name('admin.ajustes.store');
 
 
 

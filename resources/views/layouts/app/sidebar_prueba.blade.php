@@ -5,25 +5,45 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800 antialiased">
-    <flux:sidebar sticky collapsible class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
-
-        <!-- LOGO DEL SIDEBAR -->
+<body class="min-h-screen bg-white dark:bg-zinc-800">
+    <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.header>
             <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
-            <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
+            <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
 
-        <!-- OPCIONES DE NAVEGACION DEL MENU -->
+        <!-- MENU SIDEBAR DE OPCIONES -->
         <flux:sidebar.nav>
-            
-            <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate> PANEL </flux:sidebar.item>
-            <flux:sidebar.item icon="cog-6-tooth" :href="route('admin.ajustes.index')" :current="request()->routeIs('admin.ajustes.index')" wire:navigate> CONFIGURACIÓNES </flux:sidebar.item>
+
+            <flux:sidebar.group :heading="__('MENÚ')" class="grid">
+
+                <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    {{ __('Panel') }}
+                </flux:sidebar.item>
+
+                <flux:sidebar.item icon="cog-6-tooth" :href="route('admin.ajustes.index')" :current="request()->routeIs('admin.ajustes.index')" wire:navigate>
+                    {{ __('Configuración') }}
+                </flux:sidebar.item>
+
+
+
+
+
+            </flux:sidebar.group>
+
+
+
+
+
+
+
         </flux:sidebar.nav>
 
-        <flux:sidebar.spacer />
+        <flux:spacer />
 
-        <!-- MENU FOOTER DEL SIDEBAR -->
+
+
+        <!-- Opciones footer -->
         <flux:sidebar.nav>
             <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
                 {{ __('Repositorio') }}
@@ -33,6 +53,7 @@
                 {{ __('Documentación') }}
             </flux:sidebar.item>
         </flux:sidebar.nav>
+
 
         <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
     </flux:sidebar>
@@ -90,6 +111,7 @@
     </flux:header>
 
     {{ $slot }}
+
     @persist('toast')
     <flux:toast.group>
         <flux:toast />

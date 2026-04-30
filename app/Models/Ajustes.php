@@ -18,4 +18,10 @@ class Ajustes extends Model
         'interes',
         'mora',
     ];
+
+    
+
+
+
+
 }
