@@ -10,6 +10,15 @@
         </flux:modal.trigger>
     </div>
 
+
+
+
+
+
+
+
+
+
     <!-- MODAL PARA LA CREACION DEL ROL -->
     <flux:modal name="edit-profile" flyout :open="$errors->any()">
         <form action="{{ route('admin.roles.store') }}" method="POST" class="space-y-6">
@@ -34,7 +43,7 @@
 
             <div class="flex">
                 <flux:spacer />
-                <flux:button class="cursor-pointer" type="submit" size="xs" variant="primary">GUARDAR ROL</flux:button>
+                <flux:button color="lime" class="cursor-pointer" type="submit" size="xs" variant="primary">GUARDAR ROL</flux:button>
             </div>
         </form>
     </flux:modal>
@@ -87,7 +96,31 @@
 
                     <td class="px-3 py-2 border border-gray-200 dark:border-zinc-700 whitespace-nowrap text-center">
                         <div class="flex justify-center gap-2">
-                            <flux:button class="cursor-pointer" variant="primary" icon="eye" color="yellow" size="xs"> VER </flux:button>
+
+                            <!-- Boton Show con disparador unico -->
+                            <flux:modal.trigger name="show-rol-{{ $rol->id }}">
+                                <flux:button class="cursor-pointer" variant="primary" icon="eye" color="yellow" size="xs"> VER </flux:button>
+                            </flux:modal.trigger>
+
+                            <flux:modal name="show-rol-{{ $rol->id }}" flyout class="text-left">
+                                <div class="space-y-6">
+                                    <div>
+                                        <flux:heading size="lg"> VER DETALLES </flux:heading>
+                                        <flux:text class="mt-2"> Aca veras los detalles del rol. </flux:text>
+                                    </div>
+                                    <flux:input value="{{ $rol->name }}" label="Nombre Rol" readonly />
+                                    <flux:input value="{{ $rol->guard_name }}" label="Tipo Rol" readonly />
+                                    <flux:input value="{{ $rol->created_at->format('d-m-Y H:i:s') }}" label="Fecha de Registro" readonly />
+                                    <flux:input value="{{ $rol->updated_at->format('d-m-Y H:i:s') }}" label="Última Actualización" readonly />
+
+
+
+                                </div>
+                            </flux:modal>
+
+
+
+
 
                             <!-- Botón Editar con disparador único -->
                             <flux:modal.trigger name="edit-rol-{{ $rol->id }}">
@@ -110,7 +143,7 @@
 
                                     <div class="flex">
                                         <flux:spacer />
-                                        <flux:button class="cursor-pointer" type="submit" size="xs" variant="primary">ACTUALIZAR DATOS</flux:button>
+                                        <flux:button color="lime" class="cursor-pointer" type="submit" size="xs" variant="primary">ACTUALIZAR DATOS</flux:button>
                                     </div>
                                 </form>
                             </flux:modal>

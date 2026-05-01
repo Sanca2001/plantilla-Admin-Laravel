@@ -46,8 +46,6 @@ class AjustesController extends Controller
     {
 
         // dd($request->all());
-
-
         //validar los datos
         $request->validate([
             'nombre_empresa' => 'required|string|max:255',
