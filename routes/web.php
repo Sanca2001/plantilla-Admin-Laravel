@@ -24,5 +24,7 @@ Route::patch('/admin/roles/{id}', [App\Http\Controllers\RoleController::class, '
 Route::delete('/admin/roles/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('admin.roles.destroy')->middleware(['auth', 'verified']);
 
 
+//rutas para los usuarios
+Route::get('/admin/users',[App\Http\Controllers\UserController::class, 'index'])->name('admin.users.index')->middleware(['auth', 'verified']);
 
-
+Route::get('/admin/users/create',[App\Http\Controllers\UserController::class, 'create'])->name('admin.users.create')->middleware(['auth', 'verified']);

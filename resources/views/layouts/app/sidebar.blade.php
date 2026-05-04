@@ -31,6 +31,8 @@
             <!-- ROLES -->
             <flux:sidebar.item icon="user-group" :href="route('admin.roles.index')" :current="request()->routeIs('admin.roles.index')" wire:navigate> ROLES </flux:sidebar.item>
 
+            <!-- USUARIOS -->
+            <flux:sidebar.item icon="users" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.index')" wire:navigate> USUARIOS </flux:sidebar.item>
 
 
 
@@ -52,7 +54,7 @@
             </flux:sidebar.item>
         </flux:sidebar.nav>
 
-        <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
+        <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->nombres" />
     </flux:sidebar>
 
     <!-- Mobile User Menu -->
@@ -71,11 +73,11 @@
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                             <flux:avatar
-                                :name="auth()->user()->name"
-                                :initials="auth()->user()->initials()" />
+                                :name="auth()->user()->nombres"
+                                 />
 
                             <div class="grid flex-1 text-start text-sm leading-tight">
-                                <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
+                                <flux:heading class="truncate">{{ auth()->user()->nombres }}</flux:heading>
                                 <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
                             </div>
                         </div>
